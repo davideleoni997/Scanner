@@ -1,0 +1,2 @@
+classes.ListOfBugTickets#getFixversion(Ljava/lang/String;LJSONArray;)Ljava/lang/String;
+classes.ListOfBugTickets#compareVersion(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;

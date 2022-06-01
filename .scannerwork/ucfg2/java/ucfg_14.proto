@@ -1,0 +1,53 @@
+
+Bclasses.GetReleaseInfo#readAll(Ljava/io/Reader;)Ljava/lang/String;j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaá á(!"4*ı
+2j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaã ã(˛˚
+j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaã ã(
+%3java.lang.StringBuilder":java.lang.StringBuilder#append(C)Ljava/lang/StringBuilder;*
+
+sbjava.lang.StringBuilder*
+""2	append(C)*
+3*¨
+3j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaä ä(≤Ø
+j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaä ä(	
+%2int"java.io.Reader#read()I*
+
+rdjava.io.Reader2read()*
+2
+1*í
+4j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaà à(.ß§
+j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaà à(,
+%0java.lang.StringBuilder"java.lang.StringBuilderπ
+∂
+j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaà à(.
+%1"!java.lang.StringBuilder#<init>()V*
+
+%0java.lang.StringBuilderµ
+≤
+j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaà à(/
+sbjava.lang.StringBuilder"__id*
+
+%0java.lang.StringBuilder*
+3*Â
+1j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaç ç(ÍÁ
+j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaç ç(
+%4java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;*
+
+sbjava.lang.StringBuilder2
+toString()"Ü
+j
+^C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/GetReleaseInfo.javaç ç(
+
+%4java.lang.String:
+rdjava.io.ReaderB"
+classes.GetReleaseInfo

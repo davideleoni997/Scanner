@@ -1,0 +1,7 @@
+organization=davideleoni997
+projectKey=9HXy0hJynXck5enCnoN0Xch34NxpQb02zUhyEXx75JdwERDMHt5ly79f9QZq2b49zWh
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.29264
+dashboardUrl=https://sonarcloud.io/dashboard?id=9HXy0hJynXck5enCnoN0Xch34NxpQb02zUhyEXx75JdwERDMHt5ly79f9QZq2b49zWh
+ceTaskId=AYEA-mD_x7rM3OF9-9JH
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYEA-mD_x7rM3OF9-9JH

@@ -1,0 +1,6 @@
+weka.Analysis#eval(Ljava/util/ArrayList;Ljava/util/ArrayList;Lweka/Analysis$Classifiers;ILjava/io/FileWriter;)V
+null
+java.util.logging.Logger#getGlobal()Ljava/util/logging/Logger;
+weka.Analysis#accoda(Ljava/util/ArrayList;Ljava/util/ArrayList;ILjava/io/FileWriter;)V
+java.lang.String#valueOf(D)Ljava/lang/String;
+weka.Analysis#toCsv(Ljava/io/FileWriter;LEvaluation;)V

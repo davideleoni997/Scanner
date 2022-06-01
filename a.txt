@@ -1,0 +1,1 @@
+sonar-scanner.bat -D"sonar.organization=davideleoni997" -D"sonar.projectKey=9HXy0hJynXck5enCnoN0Xch34NxpQb02zUhyEXx75JdwERDMHt5ly79f9QZq2b49zWh" -D"sonar.sources=./src/" -D"sonar.exclusions=./BOOKKEEPER/;./MNG/;./avro;./JARs;./Reports" -D"sonar.java.binaries=./out/" -D"sonar.host.url=https://sonarcloud.io"

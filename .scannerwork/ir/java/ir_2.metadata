@@ -1,0 +1,5 @@
+classes.VersionChange#cloneMaster(Ljava/lang/String;)V
+java.lang.ProcessBuilder#<init>([Ljava/lang/String;)V
+java.lang.ProcessBuilder#redirectErrorStream(Z)Ljava/lang/ProcessBuilder;
+java.lang.ProcessBuilder#instance-init#
+java.lang.ProcessBuilder#start()Ljava/lang/Process;

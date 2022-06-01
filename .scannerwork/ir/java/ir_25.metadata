@@ -1,0 +1,3 @@
+weka.Analysis#divide(Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V
+null
+weka.Analysis#split(Ljava/util/ArrayList;Ljava/util/ArrayList;LRemoveWithValues;LInstances;D)V

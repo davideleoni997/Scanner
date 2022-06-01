@@ -1,0 +1,275 @@
+
+çclasses.CreateDataSet#getBuggy(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)Ljava/lang/Character;i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java— —(%"20*∏
+13i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaﬂ ﬂ(¿Ω
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaﬂ( ﬂ(6
+
+%16int"java.util.Scanner#nextInt()I*
+
+scanjava.util.Scanner2	nextInt()*
+12*Û
+14i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java›' ›(,ú
+ô
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java›' ›(1
+%14java.util.logging.Level"__id*
+""‹Ÿ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java› ›(9
+%15void"Jjava.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V*!
+
+%13java.util.logging.Logger* 
+
+%14java.util.logging.Level*
+
+numberjava.lang.String20log(Ljava/util/logging/Level;Ljava/lang/String;)*
+13*ì
+15i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‹ ‹(,´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‹ ‹(,
+numberjava.lang.String"__id*
+
+%12java.lang.StringÌ
+Í
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java› ›("
+%13java.util.logging.Logger">java.util.logging.Logger#getGlobal()Ljava/util/logging/Logger;*"
+java.util.logging.Logger*
+14*˛
+16i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€I €(l´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€I €(l
+scanjava.util.Scanner"__id*
+
+%10java.util.Scannerÿ’
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‹  ‹(+
+%12java.lang.String"*java.util.Scanner#next()Ljava/lang/String;*
+
+scanjava.util.Scanner2next()*
+15*™
+17i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€ €(H≤
+Ø
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€ €(H
+brjava.io.BufferedReader"__id*
+
+%8java.io.BufferedReaderõò
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€\ €(c
+%10java.util.Scanner"java.util.Scannerﬂ
+‹
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€X €(l
+%11"-java.util.Scanner#<init>(Ljava/lang/String;)V*
+
+%10java.util.Scanner*
+
+gitLinejava.lang.String*
+16*Å
+18i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€  €(H§°
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€$ €(2
+%8java.io.BufferedReader"java.io.BufferedReader‚
+ﬂ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€  €(H
+%9"0java.io.BufferedReader#<init>(Ljava/io/Reader;)V*
+
+%8java.io.BufferedReader*
+
+%6java.io.FileReader*
+17*Û
+19i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€B €(Fúô
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€7 €(A
+%6java.io.FileReader"java.io.FileReader‹
+Ÿ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java€3 €(G
+%7".java.io.FileReader#<init>(Ljava/lang/String;)V*
+
+%6java.io.FileReader*
+
+filejava.lang.String*
+18*„
+1i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaÏ Ï("s
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaÏ Ï(
+""*¯
+6i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java„* „(+"á
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java„# „(,
+
+xjava.lang.Character*¶
+7i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‚ ‚(b¨
+©
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‚ ‚(b
+xjava.lang.Character"__id*
+
+%19java.lang.Character*
+6
+10*Œ
+8i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‚" ‚(;ÿ
+’
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‚" ‚(a
+%19java.lang.Character"ûclasses.CreateDataSet#evaluateVersionsBuggyness(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Character;*"
+classes.CreateDataSet*
+
+versionjava.lang.String*
+
+listjava.lang.String*
+
+alljava.util.List*
+
+numberjava.lang.String*
+
+projNamejava.lang.String*
+7*¢
+9i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java· ·(,©
+¶
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java· ·(,
+listjava.lang.String"__id*
+
+%18java.lang.String*
+8
+1*‘
+20i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java“ “(ñ
+ì
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java“ “(
+listjava.lang.String"__id*
+""Ì
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‘ ‘(+
+%0java.lang.String".java.lang.String#replace(CC)Ljava/lang/String;*
+
+gitLinejava.lang.String*
+#*
+ 2replace(CC)´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java‘ ‘(+
+gitLinejava.lang.String"__id*
+
+%0java.lang.StringÌ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java’ ’(+
+%1java.lang.String".java.lang.String#replace(CC)Ljava/lang/String;*
+
+gitLinejava.lang.String*
+:*
+ 2replace(CC)´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java’ ’(+
+gitLinejava.lang.String"__id*
+
+%1java.lang.StringÌ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java÷ ÷(+
+%2java.lang.String".java.lang.String#replace(CC)Ljava/lang/String;*
+
+gitLinejava.lang.String*
+-*
+ 2replace(CC)´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java÷ ÷(+
+gitLinejava.lang.String"__id*
+
+%2java.lang.StringÌ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java◊ ◊(+
+%3java.lang.String".java.lang.String#replace(CC)Ljava/lang/String;*
+
+gitLinejava.lang.String*
+.*
+ 2replace(CC)´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java◊ ◊(+
+gitLinejava.lang.String"__id*
+
+%3java.lang.StringÌ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaÿ ÿ(*
+%4java.lang.String".java.lang.String#replace(CC)Ljava/lang/String;*
+
+gitLinejava.lang.String*
+,*
+ 2replace(CC)´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaÿ ÿ(*
+gitLinejava.lang.String"__id*
+
+%4java.lang.StringÌ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaŸ Ÿ(+
+%5java.lang.String".java.lang.String#replace(CC)Ljava/lang/String;*
+
+gitLinejava.lang.String*
+>*
+ 2replace(CC)´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaŸ Ÿ(+
+gitLinejava.lang.String"__id*
+
+%5java.lang.String*
+19*ﬂ
+10i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java· ·(!ËÂ
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.java· ·(,
+%18java.lang.String"3java.io.BufferedReader#readLine()Ljava/lang/String;*
+
+brjava.io.BufferedReader2
+readLine()*
+9*£
+11i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaﬂ ﬂ(7´
+®
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaﬂ ﬂ(7
+numberjava.lang.String"__id*
+
+%17java.lang.String*
+10*“
+12i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaﬂ ﬂ(7⁄
+◊
+i
+]C:/Users/kew1/Desktop/Test/bookkeeper_versions/ProjectAnalysis/src/classes/CreateDataSet.javaﬂ ﬂ(7
+%17java.lang.String"-java.lang.String#valueOf(I)Ljava/lang/String;*"
+java.lang.String*
+
+
+%16int*
+11:
+versionjava.lang.String:
+filejava.lang.String:
+gitLinejava.lang.String:
+alljava.util.List:
+projNamejava.lang.StringB"
+classes.CreateDataSet

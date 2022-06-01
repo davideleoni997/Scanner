@@ -1,0 +1,8 @@
+classes.CreateDataSet#evaluateVersionsBuggyness(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Character;
+java.lang.Math#floor(D)D
+java.lang.Integer#parseInt(Ljava/lang/String;)I
+java.lang.String#equals(Ljava/lang/Object;)Z
+java.lang.String#contains(Ljava/lang/CharSequence;)Z
+java.lang.Double#parseDouble(Ljava/lang/String;)D
+java.lang.String#split(Ljava/lang/String;I)[Ljava/lang/String;
+java.lang.String#equalsIgnoreCase(Ljava/lang/String;)Z
