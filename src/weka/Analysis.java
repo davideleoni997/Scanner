@@ -81,7 +81,7 @@ public class Analysis {
         ArrayList<Instances> bookTrainingBestF = new ArrayList<>();
         ArrayList<Instances> bookTestingBestF = new ArrayList<>();
 
-        //Prima di dividere scarta dati più recenti---usa versione?
+        //Prima di dividere scarta dati più recenti
         //Elimina 20% dati più recenti
 
         for(Instances in : avro){
@@ -143,16 +143,22 @@ public class Analysis {
         //Add cost sensitive classifier HERE and use it in evaluate method
         CostSensitiveClassifier c1 = new CostSensitiveClassifier();
         c1.setClassifier(new J48());
-        c1.setCostMatrix( createCostMatrix(2, 3));
+        c1.setCostMatrix( createCostMatrix(1, 10));
+        c1.setMinimizeExpectedCost(false);
 
-        Classifiers cf = new Classifiers(rf,nb,ibk,c1);
+        CostSensitiveClassifier c2 = new CostSensitiveClassifier();
+        c2.setClassifier(new J48());
+        c2.setCostMatrix(createCostMatrix(1,10));
+        c2.setMinimizeExpectedCost(true);
+
+        Classifiers cf = new Classifiers(rf,nb,ibk,c1,c2);
 
         evaluate(avroTesting,avroTraining,bookTesting,bookTraining,cf);
         evaluate(avroTestingBestF,avroTrainingBestF,bookTestingBestF,bookTrainingBestF,cf);
     }
 
     private static void divide(ArrayList<Instances> dataAvro,ArrayList<Instances> avroTraining,ArrayList<Instances> avroTesting,ArrayList<Instances> dataBook,ArrayList<Instances> bookTraining,ArrayList<Instances> bookTesting) throws Exception {
-        //Divide the releases, delete a part of the newest data before dividing, già prendo soilo metà delle versioni e non tutte.
+        //Divide the releases, delete a part of the newest data before dividing, già prendo solo metà delle versioni e non tutte.
         RemoveWithValues rwv = new RemoveWithValues();
         rwv.setAttributeIndex("1");
         for (Instances instances : dataAvro) {
@@ -272,13 +278,24 @@ public class Analysis {
             Evaluation ceval = new Evaluation(actualBookTesting.get(i));
             cf.getC1().buildClassifier(actualBookTraining.get(i));
             ceval.evaluateModel(cf.getC1(), actualBookTesting.get(i));
-            Logger.getGlobal().log(Level.INFO,"Res costsens:{0} \n {1}\n", new String[]{ieval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
+            Logger.getGlobal().log(Level.INFO,"Res costsens:{0} \n {1}\n", new String[]{ceval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
         accoda(actualBookTesting, actualBookTraining, i, fw );
 
         fw.append(percentTrain).append(",");
         fw.append(percentTest).append(",");
-        fw.append("CostSensitive,");
+        fw.append("CostSensitiveLearning,");
         toCsv(fw, ceval);
+
+        Evaluation c2eval = new Evaluation(actualBookTesting.get(i));
+        cf.getC2().buildClassifier(actualBookTraining.get(i));
+        c2eval.evaluateModel(cf.getC2(), actualBookTesting.get(i));
+        Logger.getGlobal().log(Level.INFO,"Res costsens:{0} \n {1}\n", new String[]{c2eval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
+        accoda(actualBookTesting, actualBookTraining, i, fw );
+
+        fw.append(percentTrain).append(",");
+        fw.append(percentTest).append(",");
+        fw.append("CostSensitiveThreshold,");
+        toCsv(fw, c2eval);
 
     }
 
@@ -336,9 +353,9 @@ public class Analysis {
             overSampling[1] = "1.0";
             overSampling[2] = "-Z";
             if (nb < b)
-                overSampling[3] = String.valueOf(b / (nb + b));
+                overSampling[3] = String.valueOf((b / (nb + b))*200);
             else
-                overSampling[3] = String.valueOf(nb / (nb + b));
+                overSampling[3] = String.valueOf((nb / (nb + b))*200);
 
             SpreadSubsample spread = new SpreadSubsample();
             spread.setInputFormat(data);
@@ -349,6 +366,7 @@ public class Analysis {
 
 
             Resample rsa = new Resample();
+            rsa.setNoReplacement(false);
             rsa.setOptions(overSampling);
             rsa.setInputFormat(data);
             Instances oversampled = Filter.useFilter(data, rsa);
@@ -390,13 +408,15 @@ public class Analysis {
         private final NaiveBayes nb;
         private final IBk ibk;
         private final CostSensitiveClassifier c1;
+        private final CostSensitiveClassifier c2;
 
 
-        public Classifiers(RandomForest rf, NaiveBayes nb, IBk ibk, CostSensitiveClassifier c1) {
+        public Classifiers(RandomForest rf, NaiveBayes nb, IBk ibk, CostSensitiveClassifier c1, CostSensitiveClassifier c2) {
             this.rf = rf;
             this.nb = nb;
             this.ibk = ibk;
             this.c1 = c1;
+            this.c2 = c2;
         }
 
         public RandomForest getRf() {
@@ -414,6 +434,8 @@ public class Analysis {
         public CostSensitiveClassifier getC1() {
             return c1;
         }
+
+        public CostSensitiveClassifier getC2() {return  c2; }
     }
 
 }

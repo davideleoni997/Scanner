@@ -15,9 +15,8 @@ public class VersionChange {
         ProcessBuilder builder;
 
             builder = new ProcessBuilder(
-                    "cmd.exe", "/c", "git clone https://github.com/apache/ " + projName);
+                    "cmd.exe", "/c", "git clone https://github.com/apache/" + projName);
 
-        builder.redirectErrorStream(true);
         Process proc = builder.start();
         proc.waitFor();
     }

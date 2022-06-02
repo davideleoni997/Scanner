@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 public class Main {
 
     public static void main(String[] args){
-        String projName = "AVRO";
+        String projName = "BOOKKEEPER";
        try{
           VersionChange.cloneMaster(projName);
           int numvers = GetReleaseInfo.getRelease(projName);
