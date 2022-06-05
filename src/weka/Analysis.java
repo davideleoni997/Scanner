@@ -7,7 +7,6 @@ import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.lazy.IBk;
 import weka.classifiers.meta.CostSensitiveClassifier;
-import weka.classifiers.trees.J48;
 import weka.classifiers.trees.RandomForest;
 import weka.core.AttributeStats;
 import weka.core.Instances;
@@ -30,7 +29,7 @@ import java.util.logging.Logger;
 
 public class Analysis {
 
-    public static final String RESULTS = "\nResults\n======\n";
+    private static final String RESULTS = "\nResults\n======\n";
     private static double totDataBook;
     private static double totDataAvro;
 
@@ -66,8 +65,7 @@ public class Analysis {
         book.add(dataBook);
         book.addAll(balance(dataBook));
 
-        ArrayList<Instances> avroBF = selectFeature(avro);
-        ArrayList<Instances> bookBF = selectFeature(book);
+
 
 
         ArrayList<Instances> avroTesting;
@@ -81,30 +79,17 @@ public class Analysis {
         ArrayList<Instances> bookTrainingBestF = new ArrayList<>();
         ArrayList<Instances> bookTestingBestF = new ArrayList<>();
 
-        //Prima di dividere scarta dati più recenti
-        //Elimina 20% dati più recenti
-
-        for(Instances in : avro){
-            int ist = in.numInstances();
-            int start = (int) Math.ceil(ist*0.8);
-            for(;start<ist;ist-- ){
-                in.remove(start);
-            }
-
-        }
-        for(Instances in : book){
-            int ist = in.numInstances();
-            int start = (int) Math.ceil(ist*0.8);
-            for(;start<ist;ist-- ){
-                in.remove(start);
-            }
-
-        }
-
-
         divide(avro,avroTraining,avroTesting,book,bookTraining,bookTesting);
-        divide(avroBF,avroTrainingBestF,avroTestingBestF,bookBF,bookTrainingBestF,bookTestingBestF);
+        divide(avro,avroTrainingBestF,avroTestingBestF,book,bookTrainingBestF,bookTestingBestF);
 
+        ArrayList<ArrayList<Instances>> ret;
+        ret = selectFeature(avroTrainingBestF,avroTestingBestF);
+        avroTrainingBestF = ret.get(0);
+        avroTestingBestF = ret.get(1);
+
+        ret = selectFeature(bookTrainingBestF,bookTestingBestF);
+        bookTrainingBestF = ret.get(0);
+        bookTestingBestF = ret.get(1);
 
         //Building classifiers
 
@@ -142,12 +127,10 @@ public class Analysis {
 
         //Add cost sensitive classifier HERE and use it in evaluate method
         CostSensitiveClassifier c1 = new CostSensitiveClassifier();
-        c1.setClassifier(new J48());
         c1.setCostMatrix( createCostMatrix(1, 10));
         c1.setMinimizeExpectedCost(false);
 
         CostSensitiveClassifier c2 = new CostSensitiveClassifier();
-        c2.setClassifier(new J48());
         c2.setCostMatrix(createCostMatrix(1,10));
         c2.setMinimizeExpectedCost(true);
 
@@ -158,17 +141,16 @@ public class Analysis {
     }
 
     private static void divide(ArrayList<Instances> dataAvro,ArrayList<Instances> avroTraining,ArrayList<Instances> avroTesting,ArrayList<Instances> dataBook,ArrayList<Instances> bookTraining,ArrayList<Instances> bookTesting) throws Exception {
-        //Divide the releases, delete a part of the newest data before dividing, già prendo solo metà delle versioni e non tutte.
         RemoveWithValues rwv = new RemoveWithValues();
         rwv.setAttributeIndex("1");
         for (Instances instances : dataAvro) {
-            for (double i = 4.0; i <= 17.0*0.8; i = i + 1) {
+            for (double i = 4.0; i <= 17.0; i = i + 1) {
                 split(avroTraining, avroTesting, rwv, instances, i);
 
             }
         }
         for (Instances instances : dataBook) {
-            for (double i = 3.0; i <= 7.0*0.8; i = i + 1) {
+            for (double i = 3.0; i <= 7.0; i = i + 1) {
                 split(bookTraining, bookTesting, rwv, instances, i);
 
             }
@@ -191,7 +173,7 @@ public class Analysis {
         rwv.setInputFormat(instances);
         rwv.setInvertSelection(true);
         Instances train = Filter.useFilter(instances, rwv);
-        train.setRelationName(instances.relationName() + "RUN" + i);
+        train.setRelationName(instances.relationName() + "RUN ");
         avroTraining.add(train);
         rwv.setInvertSelection(false);
         Instances tempTest = Filter.useFilter(instances, rwv);
@@ -199,7 +181,7 @@ public class Analysis {
         rwv.setInvertSelection(true);
         rwv.setSplitPoint(i + 1);
         Instances test = Filter.useFilter(tempTest, rwv);
-        test.setRelationName(tempTest.relationName() + "RUN" + i);
+        test.setRelationName(tempTest.relationName() + "RUN ");
         avroTesting.add(test);
     }
 
@@ -224,6 +206,7 @@ public class Analysis {
     }
 
     private static void eval(ArrayList<Instances> actualBookTesting, ArrayList<Instances> actualBookTraining, Classifiers cf, int i, FileWriter fw) throws Exception {
+
             double nonbuggyTrain;
             double buggyTrain;
             double nonbuggyTest;
@@ -275,31 +258,72 @@ public class Analysis {
             fw.append("IBK,");
             toCsv(fw, ieval);
 
+        for(int j =0; j<3;j++) {
+            switch(j) {
+                case 0:
+                    cf.getC1().setClassifier(cf.getRf());
+                    cf.getC2().setClassifier(cf.getRf());
+                    break;
+                case 1:
+                    cf.getC1().setClassifier(cf.getNb());
+                    cf.getC2().setClassifier(cf.getNb());
+                    break;
+                case 2:
+                    cf.getC1().setClassifier(cf.getIbk());
+                    cf.getC2().setClassifier(cf.getIbk());
+                    break;
+                default:
+            }
             Evaluation ceval = new Evaluation(actualBookTesting.get(i));
             cf.getC1().buildClassifier(actualBookTraining.get(i));
             ceval.evaluateModel(cf.getC1(), actualBookTesting.get(i));
-            Logger.getGlobal().log(Level.INFO,"Res costsens:{0} \n {1}\n", new String[]{ceval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
-        accoda(actualBookTesting, actualBookTraining, i, fw );
+            Logger.getGlobal().log(Level.INFO, "Res costsens:{0} \n {1}\n", new String[]{ceval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
+            accoda(actualBookTesting, actualBookTraining, i, fw);
 
-        fw.append(percentTrain).append(",");
-        fw.append(percentTest).append(",");
-        fw.append("CostSensitiveLearning,");
-        toCsv(fw, ceval);
+            fw.append(percentTrain).append(",");
+            fw.append(percentTest).append(",");
+            switch(j) {
+                case 0:
+                    fw.append("CostSensitiveLearning RandomForest,");
+                    break;
+                case 1:
+                    fw.append("CostSensitiveLearning NaiveBayes,");
+                    break;
+                case 2:
+                    fw.append("CostSensitiveLearning IBK,");
+                    break;
+                default :
+            }
+            toCsv(fw, ceval);
 
-        Evaluation c2eval = new Evaluation(actualBookTesting.get(i));
-        cf.getC2().buildClassifier(actualBookTraining.get(i));
-        c2eval.evaluateModel(cf.getC2(), actualBookTesting.get(i));
-        Logger.getGlobal().log(Level.INFO,"Res costsens:{0} \n {1}\n", new String[]{c2eval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
-        accoda(actualBookTesting, actualBookTraining, i, fw );
+            Evaluation c2eval = new Evaluation(actualBookTesting.get(i));
+            cf.getC2().buildClassifier(actualBookTraining.get(i));
+            c2eval.evaluateModel(cf.getC2(), actualBookTesting.get(i));
+            Logger.getGlobal().log(Level.INFO, "Res costsens:{0} \n {1}\n", new String[]{c2eval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
+            accoda(actualBookTesting, actualBookTraining, i, fw);
 
-        fw.append(percentTrain).append(",");
-        fw.append(percentTest).append(",");
-        fw.append("CostSensitiveThreshold,");
-        toCsv(fw, c2eval);
+            fw.append(percentTrain).append(",");
+            fw.append(percentTest).append(",");
+            switch(j) {
+                case 0:
+                    fw.append("CostSensitiveThreshold RandomForest,");
+                    break;
+                case 1:
+                    fw.append("CostSensitiveThreshold NaiveBayes,");
+                    break;
+                case 2:
+                    fw.append("CostSensitiveThreshold IBK,");
+                    break;
+                default :
+            }
+
+            toCsv(fw, c2eval);
+        }
 
     }
 
     private static void accoda(ArrayList<Instances> actualBookTesting, ArrayList<Instances> actualBookTraining, int i, FileWriter fw) throws IOException {
+
         fw.append(actualBookTesting.get(i).relationName()).append(",");
 
         if(actualBookTesting.get(i).relationName().contains("BOOK"))
@@ -385,10 +409,10 @@ public class Analysis {
             return ret;
     }
 
-
-    private static ArrayList<Instances> selectFeature(ArrayList<Instances> data) throws Exception {
+    private static ArrayList<ArrayList<Instances>> selectFeature(ArrayList<Instances> data, ArrayList<Instances> testing) throws Exception {
         //Feature Selection
         ArrayList<Instances> ret = new ArrayList<>();
+        ArrayList<Instances> testret = new ArrayList<>();
         weka.filters.supervised.attribute.AttributeSelection attsel = new weka.filters.supervised.attribute.AttributeSelection();
         CfsSubsetEval attrEval = new CfsSubsetEval();
         BestFirst bf = new BestFirst();
@@ -397,10 +421,17 @@ public class Analysis {
         for(Instances in : data) {
             attsel.setInputFormat(in);
             Instances dataBookBF = Filter.useFilter(in, attsel);
-             dataBookBF.setRelationName(in.relationName() + "BEST FIRST ");
+            Instances testBF = Filter.useFilter(testing.get(data.indexOf(in)),attsel);
+            dataBookBF.setRelationName(in.relationName() + "BEST FIRST ");
+            testBF.setRelationName(in.relationName() + "BEST FIRST ");
             ret.add(dataBookBF);
+            testret.add(testBF);
         }
-        return ret;
+       ArrayList<ArrayList<Instances>> ritorno = new ArrayList<>() ;
+        ritorno.add(ret);
+        ritorno.add(testret);
+        return ritorno;
+
     }
 
     private static class Classifiers{

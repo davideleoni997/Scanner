@@ -2,11 +2,13 @@ package classes;
 
 
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
 
     public static void main(String[] args){
-        String projName = "BOOKKEEPER";
+        String projName = "AVRO";
        try{
           VersionChange.cloneMaster(projName);
           int numvers = GetReleaseInfo.getRelease(projName);
@@ -21,7 +23,7 @@ public class Main {
 
        }
        catch(Exception e){
-           e.printStackTrace();
+           Logger.getGlobal().log(Level.INFO,e.getMessage());
            Thread.currentThread().interrupt();
        }
 

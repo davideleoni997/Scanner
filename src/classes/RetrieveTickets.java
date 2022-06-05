@@ -1,7 +1,6 @@
 package classes;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -30,7 +29,7 @@ private RetrieveTickets(){
 	      return sb.toString();
 	   }
 
-   public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+   public static JSONObject readJsonFromUrl(String url) throws IOException {
       try (InputStream is = new URL(url).openStream()) {
          BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
          String jsonText = readAll(rd);
@@ -40,7 +39,7 @@ private RetrieveTickets(){
 
 
   
-   public static void retrieveTickets(String projName) throws IOException, JSONException {
+   public static void retrieveTickets(String projName) throws IOException {
 		   
 
 	   int j;
@@ -96,8 +95,8 @@ private RetrieveTickets(){
             //Exception catching
           } catch (Exception e) {
            Logger.getGlobal().log(Level.WARNING, "Error in csv writer");
-           e.printStackTrace();
+           Logger.getGlobal().log(Level.INFO,e.getMessage());
        }
-      } //deliberable 1 fare grafico
+      }
 
    }

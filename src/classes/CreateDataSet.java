@@ -42,7 +42,7 @@ public class CreateDataSet {
 
             }
         } catch(Exception e){
-            e.printStackTrace();
+            Logger.getGlobal().log(Level.INFO,e.getMessage());
         }
         String projPath = Paths.get("").toAbsolutePath().toString() + File.separator + projName + File.separator;
         try (Stream<Path> paths = Files.walk(Paths.get(projPath)); FileWriter finalFw = new FileWriter(dataFile,true)){ //
@@ -69,11 +69,11 @@ public class CreateDataSet {
                             finalFw.append("0");
                             finalFw.append("\n");
                             } catch (IOException e) {
-                                e.printStackTrace();
+                            Logger.getGlobal().log(Level.INFO,e.getMessage());
                                 }
                     });
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.getGlobal().log(Level.INFO,e.getMessage());
         }
     }
 
@@ -320,7 +320,7 @@ public class CreateDataSet {
             BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String gitLine;
             while ((gitLine = r.readLine()) != null) {
-                if (gitLine.contains(projName + "-") || gitLine.contains("Issue #")) {
+                if ((gitLine.contains("bug") && gitLine.contains(projName + "-")) || gitLine.contains("Issue #")) {
 
                     Character x = getBuggy(version, file, gitLine, all,projName);
                     if (x != null) return x;
@@ -378,9 +378,9 @@ public class CreateDataSet {
                 //usa proportion e calcola IV se IV < attuale ritorna 1
                 if(!projName.equalsIgnoreCase("AVRO") && versions.length>=5 && !versions[3].equals("") && Integer.parseInt(versions[3])>=Integer.parseInt(versions[4])){
                     int fv = Integer.parseInt(versions[3]);
-                    //Sembra che math ceil su fv-integer * P possa andare.
+                    //Sembra che math floor su fv-integer * P possa andare.
                     int iv = (int) (fv-((fv-Integer.parseInt(versions[4]))*Math.floor(Double.parseDouble(all.get(Integer.parseInt(version) - 1)[1]))));
-                    if(Integer.parseInt(version)>iv && Integer.parseInt(version)<fv) {
+                    if((Integer.parseInt(version)>=iv) && (Integer.parseInt(version)<fv)) {
                         return '1';
                     }
                 }

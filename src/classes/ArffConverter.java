@@ -41,7 +41,7 @@ public class ArffConverter {
             }
         }
         catch(Exception e){
-            e.printStackTrace();
+            Logger.getGlobal().log(Level.INFO,e.getMessage());
         }
     }
 }

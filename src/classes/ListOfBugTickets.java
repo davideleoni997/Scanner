@@ -55,7 +55,7 @@ public class ListOfBugTickets {
             } while (i < total);
         }
         catch(IOException e){
-            e.printStackTrace();
+            Logger.getGlobal().log(Level.INFO,e.getMessage());
         }
     }
 

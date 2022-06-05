@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class VersionChange {
 
@@ -44,7 +46,7 @@ public class VersionChange {
             proc.waitFor();
         }
         catch (Exception e){
-            e.printStackTrace();
+            Logger.getGlobal().log(Level.INFO,e.getMessage());
             Thread.currentThread().interrupt();
         }
     }

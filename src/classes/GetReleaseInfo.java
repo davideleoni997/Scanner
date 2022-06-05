@@ -1,7 +1,6 @@
 package classes;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -30,7 +29,7 @@ public class GetReleaseInfo {
 	   protected static ArrayList<LocalDateTime> releases;
 	   protected static Integer numVersions;
 
-	public static int getRelease(String projName) throws IOException, JSONException {
+	public static int getRelease(String projName) throws IOException {
 		   
 
 		 //Fills the arraylist with releases dates and orders them
@@ -85,7 +84,7 @@ public class GetReleaseInfo {
 
 		         } catch (Exception e) {
 		            Logger.getGlobal().log(Level.INFO,"Error in csv writer");
-		            e.printStackTrace();
+					Logger.getGlobal().log(Level.INFO,e.getMessage());
 		         }
 
 		return numVersions;
@@ -124,7 +123,7 @@ public class GetReleaseInfo {
 		   }
 
 
-	   public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+	   public static JSONObject readJsonFromUrl(String url) throws IOException {
 		   try (InputStream is = new URL(url).openStream(); BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
 
 			   String jsonText = readAll(rd);
