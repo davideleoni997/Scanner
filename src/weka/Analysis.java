@@ -201,7 +201,7 @@ public class Analysis {
 
             }
         } catch (Exception e) {
-        e.printStackTrace();
+            Logger.getGlobal().log(Level.INFO,e.getMessage());
     }
     }
 
@@ -277,7 +277,7 @@ public class Analysis {
             Evaluation ceval = new Evaluation(actualBookTesting.get(i));
             cf.getC1().buildClassifier(actualBookTraining.get(i));
             ceval.evaluateModel(cf.getC1(), actualBookTesting.get(i));
-            Logger.getGlobal().log(Level.INFO, "Res costsens:{0} \n {1}\n", new String[]{ceval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
+            Logger.getGlobal().log(Level.INFO, "Res costsensLearn:{0} \n {1}\n", new String[]{ceval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
             accoda(actualBookTesting, actualBookTraining, i, fw);
 
             fw.append(percentTrain).append(",");
@@ -299,7 +299,7 @@ public class Analysis {
             Evaluation c2eval = new Evaluation(actualBookTesting.get(i));
             cf.getC2().buildClassifier(actualBookTraining.get(i));
             c2eval.evaluateModel(cf.getC2(), actualBookTesting.get(i));
-            Logger.getGlobal().log(Level.INFO, "Res costsens:{0} \n {1}\n", new String[]{c2eval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
+            Logger.getGlobal().log(Level.INFO, "Res costsensThresh:{0} \n {1}\n", new String[]{c2eval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
             accoda(actualBookTesting, actualBookTraining, i, fw);
 
             fw.append(percentTrain).append(",");
@@ -369,7 +369,7 @@ public class Analysis {
                 nb = scan.nextInt();
                 b = scan.nextInt();
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger.getGlobal().log(Level.INFO,e.getMessage());
             }
 
             String[] overSampling = new String[4];
