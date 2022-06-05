@@ -299,23 +299,17 @@ public class Analysis {
             Evaluation c2eval = new Evaluation(actualBookTesting.get(i));
             cf.getC2().buildClassifier(actualBookTraining.get(i));
             c2eval.evaluateModel(cf.getC2(), actualBookTesting.get(i));
-            Logger.getGlobal().log(Level.INFO, "Res costsensThresh:{0} \n {1}\n", new String[]{c2eval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
+            Logger.getGlobal().log(Level.INFO, "Res costsensTresh:{0} \n {1}\n", new String[]{c2eval.toSummaryString(RESULTS, false), actualBookTesting.get(i).relationName()});
             accoda(actualBookTesting, actualBookTraining, i, fw);
 
             fw.append(percentTrain).append(",");
             fw.append(percentTest).append(",");
-            switch(j) {
-                case 0:
-                    fw.append("CostSensitiveThreshold RandomForest,");
-                    break;
-                case 1:
-                    fw.append("CostSensitiveThreshold NaiveBayes,");
-                    break;
-                case 2:
-                    fw.append("CostSensitiveThreshold IBK,");
-                    break;
-                default :
-            }
+            if(j==0)
+                fw.append("CostSensitiveThreshold RandomForest,");
+            else if(j==1)
+                fw.append("CostSensitiveThreshold NaiveBayes,");
+            else if(j==2)
+                fw.append("CostSensitiveThreshold IBK,");
 
             toCsv(fw, c2eval);
         }
