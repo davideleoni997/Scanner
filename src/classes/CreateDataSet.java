@@ -258,9 +258,9 @@ public class CreateDataSet {
                 continue;
             String iv = line[2].split(";")[0];
             iv = iv.split("]")[0].substring(1);
-            if(!line[4].equals(iv)) {
+            if(!line[4].equals(line[3])) {
                 bugs++;
-                total = total + ((Integer.parseInt(line[3]) - Integer.parseInt(iv)) / (Integer.parseInt(line[4]) - Integer.parseInt(iv)));
+                total = total + ((Integer.parseInt(line[3]) - Integer.parseInt(iv)) / (Integer.parseInt(line[3]) - Integer.parseInt(line[4])));
             }
             else{
                 bugs++;
@@ -379,7 +379,7 @@ public class CreateDataSet {
                 if(!projName.equalsIgnoreCase("AVRO") && versions.length>=5 && !versions[3].equals("") && Integer.parseInt(versions[3])>=Integer.parseInt(versions[4])){
                     int fv = Integer.parseInt(versions[3]);
                     //Sembra che math floor su fv-integer * P possa andare.
-                    int iv = (int) (fv-((fv-Integer.parseInt(versions[4]))*Math.floor(Double.parseDouble(all.get(Integer.parseInt(version) - 1)[1]))));
+                    int iv = (int) (fv-((fv-Integer.parseInt(versions[4]))*Math.ceil(Double.parseDouble(all.get(Integer.parseInt(version) - 1)[1]))));
                     if((Integer.parseInt(version)>=iv) && (Integer.parseInt(version)<fv)) {
                         return '1';
                     }
